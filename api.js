@@ -38,6 +38,8 @@ function makeBot() {
     adminId: process.env.ADMIN_ID ? Number(process.env.ADMIN_ID) : null,
     omNumber: process.env.OM_NUMBER || "",
     waveNumber: process.env.WAVE_NUMBER || "",
+    rfcApiKey: process.env.RFC_API_KEY || "",
+    rfcBase: process.env.RFC_API_BASE || undefined,
   }});
 }
 
