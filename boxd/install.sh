@@ -5,7 +5,10 @@ cd "$(dirname "$0")/.."
 mkdir -p data
 if [ ! -f .env ]; then cp boxd/.env.example .env; echo "Fichier .env créé — remplis BOT_TOKEN (BotFather), puis relance ce script."; exit 0; fi
 if ! grep -q "^BOT_TOKEN=." .env; then echo "BOT_TOKEN est vide dans .env — mets le token du bot Baara, puis relance."; exit 1; fi
-sudo cp boxd/baara.service /etc/systemd/system/baara.service
+NODE_BIN="$(command -v node || true)"
+if [ -z "$NODE_BIN" ]; then echo "Node.js introuvable sur cette VM — installe-le (sudo apt-get install -y nodejs) puis relance."; exit 1; fi
+sed "s|^ExecStart=.*|ExecStart=$NODE_BIN $(pwd)/server.js|" boxd/baara.service > boxd/baara.service.local
+sudo cp boxd/baara.service.local /etc/systemd/system/baara.service
 sudo systemctl daemon-reload
 sudo systemctl enable --now baara
 sleep 1
