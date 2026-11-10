@@ -84,3 +84,5 @@ const lastKb = () => (sent[sent.length - 1].extra.reply_markup.inline_keyboard |
   assert.ok(lastText().includes("pas encore lire les fichiers"), "dégradation média propre");
   console.log("✅ TESTS V2 PASSENT : onboarding détaillé, match, fiche enrichie, checklist, candidatures, lettre, entretien, quiz+série, signalements communautaires, dégradation média.");
 })().catch((e) => { console.error("❌ ÉCHEC V2 :", e.message); process.exit(1); });
+
+// (voir simulate3.js pour la régression interruption de flux)
