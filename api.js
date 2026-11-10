@@ -45,6 +45,14 @@ module.exports = async (req, res) => {
     catch (e) { res.status(200).json({ store: store.constructor.name, roundtrip_ok: false, error: e.message }); }
     return;
   }
+  if (req.method === "GET" && q.aicheck) {
+    try {
+      const aiLib = require("./lib/ai");
+      const sample = await aiLib.aiText("Réponds uniquement par le mot PONG.", 200);
+      res.status(200).json({ ai_available: aiLib.aiAvailable(), vycea_configure: !!process.env.VYCE_API_KEY, gemini_configure: !!process.env.GEMINI_API_KEY, test_reponse: sample ? String(sample).slice(0, 60) : null, test_ok: !!sample });
+    } catch (e) { res.status(200).json({ ai_available: false, error: e.message }); }
+    return;
+  }
   if (req.method === "GET" && q.housekeeping) {
     try { await store.sync?.().catch(() => {}); const r = await makeBot().housekeeping(); res.status(200).json({ housekeeping: r }); }
     catch (e) { res.status(200).json({ housekeeping: { error: e.message } }); }
