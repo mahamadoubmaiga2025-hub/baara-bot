@@ -1,0 +1,14 @@
+[Unit]
+Description=Baara — bot Emploi & CV (Telegram)
+After=network.target
+
+[Service]
+Type=simple
+User=boxd
+WorkingDirectory=/home/boxd/baara-bot
+ExecStart=/usr/bin/node /home/boxd/baara-bot/server.js
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target
