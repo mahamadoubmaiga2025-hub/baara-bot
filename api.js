@@ -13,6 +13,13 @@ function tgClient(token) {
   return {
     sendMessage: (chat_id, text, extra) => call("sendMessage", Object.assign({ chat_id, text }, extra || {})),
     answerCallbackQuery: (callback_query_id) => call("answerCallbackQuery", { callback_query_id }),
+    downloadFile: async (file_id) => {
+      const info = await call("getFile", { file_id });
+      if (!info.ok || !info.result || !info.result.file_path) return null;
+      const r = await fetch(`https://api.telegram.org/file/bot${token}/${info.result.file_path}`);
+      if (!r.ok) return null;
+      return Buffer.from(await r.arrayBuffer());
+    },
     sendDocument: async (chat_id, buffer, filename, caption) => {
       const form = new FormData();
       form.append("chat_id", String(chat_id));

@@ -1,1 +1,1 @@
-{"name":"baara-bot","version":"1.0.0","private":true,"description":"Baara — assistant Telegram Emploi & CV du Mali : offres vérifiées, CV PDF adapté à l’offre, anti-arnaque, alertes deadlines","scripts":{"test":"node test/simulate.js"}}
+{"name":"baara-bot","version":"1.0.0","private":true,"description":"Baara — assistant Telegram Emploi & CV du Mali : offres vérifiées, CV PDF adapté à l’offre, anti-arnaque, alertes deadlines","scripts":{"test":"node test/simulate.js && node test/simulate2.js"}}

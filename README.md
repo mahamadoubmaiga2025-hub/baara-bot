@@ -22,6 +22,23 @@
 - **Admin** (ADMIN_ID) : statistiques et ajout d'offre au format
   `Titre | profil | AAAA-MM-JJ | Organisation | Résumé`.
 
+## V2 — intelligent et plus utile
+
+- **Cerveau IA** (si `VYCE_API_KEY` et/ou `GEMINI_API_KEY` dans `.env`) : le texte libre
+  est compris (« je cherche un stage en compta à Bamako »), lettre de motivation rédigée
+  par offre, résumé du CV adapté réécrit par l'IA, simulation d'entretien question par
+  question avec retours, 2e avis IA sur les offres suspectes. Sans clé, chaque fonction
+  retombe sur un mode déterministe (règles/gabarits) — le bot ne casse jamais.
+- **Zéro effort** : envoie ton CV PDF → profil rempli automatiquement (lecture IA) ;
+  photo d'une annonce papier → texte lu + analyse anti-arnaque ; message vocal → transcrit
+  puis traité comme un texte.
+- **Personnalisation** : onboarding détaillé (ville, diplôme, expérience, secteurs),
+  score de match affiché sur chaque offre avec ses raisons, récap personnalisé à 7 h,
+  checklist du dossier par offre, suivi des candidatures avec rappel de relance à J+7.
+- **Habitude & communauté** : question concours du jour (série 🔥, points, classement),
+  partage WhatsApp en un toucher, signalements d'arnaque communautaires (un contact
+  signalé alerte les prochains utilisateurs qui le croisent).
+
 ## Architecture
 
 Node.js pur, **zéro dépendance**. Serveur HTTP maison (`server.js`) → handler
