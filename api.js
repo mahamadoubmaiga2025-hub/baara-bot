@@ -26,7 +26,7 @@ function tgClient(token) {
 
 function makeBot() {
   return createBot({ tg: tgClient(process.env.BOT_TOKEN), store, config: {
-    botUsername: process.env.BOT_USERNAME || "BaaraMaliBot",
+    botUsername: process.env.BOT_USERNAME || "Baaramlbot",
     adminId: process.env.ADMIN_ID ? Number(process.env.ADMIN_ID) : null,
   }});
 }

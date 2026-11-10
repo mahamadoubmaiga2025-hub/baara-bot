@@ -11,7 +11,7 @@ const tg = {
   sendDocument: async (chat_id, buffer, filename, caption) => { docs.push({ chat_id, size: buffer.length, filename, caption }); return { ok: true }; },
 };
 const store = new MemoryStore();
-const bot = createBot({ tg, store, config: { adminId: 42, botUsername: "BaaraMaliBot" } });
+const bot = createBot({ tg, store, config: { adminId: 42, botUsername: "Baaramlbot" } });
 const U = { id: 100, first_name: "Awa" };
 const msg = (text) => ({ message: { chat: { id: 100 }, from: U, text } });
 const cb = (data) => ({ callback_query: { id: "c" + Math.random(), from: U, message: { chat: { id: 100 } }, data } });
