@@ -13,6 +13,7 @@ function tgClient(token) {
   return {
     sendMessage: (chat_id, text, extra) => call("sendMessage", Object.assign({ chat_id, text }, extra || {})),
     answerCallbackQuery: (callback_query_id) => call("answerCallbackQuery", { callback_query_id }),
+    forwardMessage: (chat_id, from_chat_id, message_id) => call("forwardMessage", { chat_id, from_chat_id, message_id }),
     downloadFile: async (file_id) => {
       const info = await call("getFile", { file_id });
       if (!info.ok || !info.result || !info.result.file_path) return null;
@@ -35,6 +36,8 @@ function makeBot() {
   return createBot({ tg: tgClient(process.env.BOT_TOKEN), store, config: {
     botUsername: process.env.BOT_USERNAME || "Baaramlbot",
     adminId: process.env.ADMIN_ID ? Number(process.env.ADMIN_ID) : null,
+    omNumber: process.env.OM_NUMBER || "",
+    waveNumber: process.env.WAVE_NUMBER || "",
   }});
 }
 

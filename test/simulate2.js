@@ -50,7 +50,8 @@ const lastKb = () => (sent[sent.length - 1].extra.reply_markup.inline_keyboard |
   for (const a of answers) await bot.handleUpdate(msg(a));
   const docsBefore = docs.length;
   await bot.handleUpdate(cb("lettre_fp-2026"));
-  assert.ok(docs.length > docsBefore && docs[docs.length - 1].filename.startsWith("Lettre_"), "lettre PDF générée (gabarit)");
+  assert.ok(docs.length === docsBefore && lastText().includes("Pack CV + Lettre"), "lettre basculée dans le Pack payant (upsell, pas de PDF gratuit)");
+  assert.ok(lastKb().some(b => b.callback_data === "svco_pack_fp-2026"), "bouton de commande du Pack présent");
   // Entretien (questions de repli)
   await bot.handleUpdate(cb("prep_fp-2026"));
   assert.ok(lastText().includes("Question 1/"), "simulation démarrée");

@@ -33,7 +33,8 @@ const lastText = () => sent[sent.length - 1].text;
   assert.ok(lastText().includes("Créons ton CV"), "flux CV démarré");
   const answers = ["Awa Diallo", "Comptable", "awa@example.com · 70 00 00 00", "Bamako", "Comptable junior — Cabinet XYZ, 2023-2025 : saisie, rapprochements", "Licence en finance-comptabilité, FSEG Bamako, 2023", "Excel, Sage Comptabilité, rigueur, organisation", "Français (courant), Bambara (natif)"];
   for (const a of answers) await bot.handleUpdate(msg(a));
-  assert.ok(docs.length >= 2, "PDF du CV de base + PDF adapté envoyés (docs=" + docs.length + ")");
+  assert.ok(docs.length >= 1, "PDF du CV de base envoyé (docs=" + docs.length + ")");
+  assert.ok(!docs.some(d => d.filename.startsWith("CV_adapte")), "CV adapté complet NON livré gratuitement (aperçu payant)");
   assert.ok(docs.every(d => d.size > 500), "PDF non vides");
   assert.ok(sent.some(s => s.text.includes("Score d'adéquation")), "score d'adaptation affiché");
   // Anti-arnaque sur une offre frauduleuse évidente
